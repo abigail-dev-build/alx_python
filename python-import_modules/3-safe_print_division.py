@@ -1,7 +1,7 @@
 def safe_print_division(a, b):
     try:
         result = a / b
-    except ZeroDivisionError:
+    except (ZeroDivisionError, ValueError, TypeError):
         result = None
     finally: 
         if result is not None:
@@ -9,4 +9,5 @@ def safe_print_division(a, b):
             print("{:d} / {:d} = {}".format(a, b, result))
         else:
             print("Inside result: {:d} / {:d} = {}".format(a, b, result))
+    return result
         
