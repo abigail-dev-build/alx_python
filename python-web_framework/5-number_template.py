@@ -53,7 +53,6 @@ this function displays a HTML page only if n is an integer
 """
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def display_html_if_number(n):
-    """function that returns the html page showing the integer"""
     return render_template('5-number.html', n=n)
 
 if __name__ == "__main__":
