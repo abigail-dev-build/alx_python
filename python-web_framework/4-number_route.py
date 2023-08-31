@@ -1,3 +1,6 @@
+"""
+Basic Flask Web Server
+"""
 from flask import Flask
 from markupsafe import escape
 
