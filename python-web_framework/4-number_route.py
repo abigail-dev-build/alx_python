@@ -3,6 +3,7 @@ from markupsafe import escape
 
 app = Flask(__name__)
 
+
 """
 this function displays string "Hello HBNB!" on the path "/".
 """
@@ -35,6 +36,13 @@ It replaces any '_' to empty space(' ')
 def python_text(text):
     text = text.replace('_', ' ')
     return f"Python {escape(text)}"
+
+"""
+this function displays “n is a number” only if n is an integer and "page not found" if it is a string
+"""
+@app.route("/number/<int:n>", strict_slashes=False)
+def check_if_number(n):
+ return f"{n} is a number"
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
