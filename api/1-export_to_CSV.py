@@ -2,6 +2,7 @@
 python3 -c 'print(__import__("my_module").__doc__)'
 """
 
+import csv
 import requests
 
 def get_user_name(employee_id):
@@ -27,18 +28,21 @@ def get_user_todos(id):
         print(f"Error: {e}")
         return None
 
+# function to export as csv
+def export_to_csv(user_id, username, todos):
+    file_name = f"{user_id}.csv"
+    with open(file_name, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        # Write the header
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        # Write each task
+        for todo in todos:
+            writer.writerow([user_id, username, todo['completed'], todo['title']])
+    print(f"CSV exported successfully to {file_name}")
 
 if __name__ == "__main__":
     todos = get_user_todos(id)
     user = get_user_name(id)
-    EMPLOYEE_NAME = user['name']
-    TOTAL_NUMBER_OF_TASKS = len(todos)
-    completed_titles = [todo['title'] for todo in todos if todo['completed']]
-    NUMBER_OF_DONE_TASKS = len(completed_titles)
-
-
-
-if todos is not None:
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks ({NUMBER_OF_DONE_TASKS} / {TOTAL_NUMBER_OF_TASKS}): ")
-for title in completed_titles:
-    print("\t " + title)
+    USERNAME = user['username']
+        
+    export_to_csv(id, USERNAME, todos)
