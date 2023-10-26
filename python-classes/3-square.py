@@ -2,26 +2,53 @@
 This module is a definition of a class Square that represents a square.
 
 
-Methods:
-    __init__(self, size): Initializes an instance or object of the class
+   Methods:
+        __init__(self, size): Initializes a Square object with the given size.
+        area: Returns the area of the square
+        @property: A getter to retrieve private instance attribute
+        @size.setter: A setter that sets the value to the priv. att
 """
-class Square:
-    '''Defining the size of  a square'''
+class Square():
+    '''Defining the size of  a square
+    A class that represents a square
+    
+    Attributes:
+        size(int): The size of the square
+
+    Methods:
+        __init__(self, size): Initializes a Square object with the given size.
+        area: Returns the area of the square
+        @property: A getter to retrieve private instance attribute
+        @size.setter: A setter that sets the value to the priv. att
+
+    '''
     def __init__(self, size=0):
-        self.size = size
+        """Initialize a square instance
+            Args:
+                size(int): the size of the square initialized to 0
+                """
+        self.__size = size
 
-    '''Getting the size of  a square'''
+    @property
     def size(self):
-        return self.size
-
-    '''Defining property setter to set the size of the square'''
+        """A getter to retrieve private instance attribute
+        """
+        return self.__size
+    
+    @size.setter
     def size(self, value):
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        if value < 0:
-            raise ValueError("size must be >= 0")
-        self.size = value
+        """
+        A setter that sets the value to the priv. att
 
-    '''Defining a square by area'''
+        Args:
+        value: the size of the square
+        """
+        if value != int(value):
+            raise TypeError("size must be an integer")
+        if value  < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = value
+
     def area(self):
-        return self.size ** 2
+        '''Defining method for area of a square'''
+        return self.__size ** 2
